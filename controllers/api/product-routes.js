@@ -14,6 +14,8 @@ router.get("/", (req, res) => {
       },
       {
         model: Tag,
+        through: ProductTag,
+        as: "group",
         attributes: ["id", "tag_name"],
       },
     ],
@@ -39,6 +41,8 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Tag,
+        through: ProductTag,
+        as: "group",
         attributes: ["id", "tag_name"],
       },
     ],
@@ -122,7 +126,7 @@ router.put("/:id", (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
+      console.log(err);
       res.status(400).json(err);
     });
 });
